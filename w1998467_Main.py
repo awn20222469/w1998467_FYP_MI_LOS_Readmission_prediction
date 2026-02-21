@@ -32,7 +32,7 @@ mi_rows = [] #list to store MI related diagnosis rows from each chunk
 for chunk in pd.read_csv(
     diagnoses_icd,
     compression="gzip",
-    chunksize=200_000,  #200,000 rows at a time
+    chunksize=200_000,  #200,000 records at a time
     dtype={"icd_code": "string"}
 ):
     #filtering and storing only MI related rows
@@ -420,3 +420,4 @@ print("Accuracy (Gradient Boosting - LOS):", round(accuracy_score(y_test_los, y_
 print("\nClassification Report (Gradient Boosting - LOS):\n", classification_report(y_test_los, y_pred_gb))
 print("Confusion Matrix (Gradient Boosting - LOS):\n", confusion_matrix(y_test_los, y_pred_gb))
 print("ROC-AUC (Gradient Boosting - LOS):", round(roc_auc_score((y_test_los == "≥ 7 days").astype(int), y_prob_gb), 4))
+
